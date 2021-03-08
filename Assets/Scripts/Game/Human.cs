@@ -22,13 +22,13 @@ public class Human : Animations
     public IEnumerator PlayMixamoAnimation(AnimationType animationType)
     {
         yield return new WaitForSeconds(.3f);
-        PlayAnim(animationType,.3f,true,1);
+        PlayAnim(animationType,.3f,1);
     }
 
     public IEnumerator PlayDefaultAnimation(AnimationType animationType)
     {
         yield return new WaitForSeconds(.3f);
-        PlayAnim(animationType,.3f,false,1);
+        PlayAnim(animationType,.3f,1);
     }
 
     public IEnumerator Standing()
@@ -39,7 +39,7 @@ public class Human : Animations
     
     public IEnumerator Sitting()
     {
-        PlayAnim(AnimationType.Sitting,.3f,true);
+        PlayAnim(AnimationType.Sitting,.3f);
         yield return new WaitForSeconds(.3f);
     }
 
@@ -47,7 +47,7 @@ public class Human : Animations
     public IEnumerator ThrowHandGrenade()
     {
         yield return new WaitForSeconds(.3f);
-        PlayAnim(AnimationType.ThrowHandGrenade,.38f,true,1);
+        PlayAnim(AnimationType.ThrowHandGrenade,.38f,1);
         yield return new WaitForSeconds(3f);
         StartCoroutine(Standing());
     }

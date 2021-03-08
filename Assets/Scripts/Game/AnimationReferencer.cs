@@ -14,6 +14,7 @@ public enum AnimationType
     Surprised,
     SitToStand,
     TurnLeft45,
+    Yelling,
 }
 
 public class AnimationReferencer : LocalSingleton<AnimationReferencer>

@@ -74,8 +74,12 @@ public class GameManager : LocalSingleton<GameManager>
         myGrenade.transform.localScale = Vector3.zero;
         badMan.EvilDegree++;
         StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.SitToStand));
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.TurnLeft45));
+        yield return new WaitForSeconds(.1f);
+        pryingMan.transform.DOMoveY(10.61f,.4f);
+        yield return new WaitForSeconds(.4f);
+        StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Yelling));
     }
 
     private IEnumerator GrenadeExplosion(GameObject gameObject)

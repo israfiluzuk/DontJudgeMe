@@ -35,23 +35,15 @@ public class Animations : MonoBehaviour
     }
 
     public bool isParent;
-    public void PlayAnim(AnimationType clip, float fade = 0.3f, bool isMixamo = false, float speed = 1, Action endAnimation = null)
+    public void PlayAnim(AnimationType clip, float fade = 0.3f, float speed = 1, Action endAnimation = null)
     {
-        if (isMixamo)
+        if (animancer.Animator.avatar == null)
+            fade = 0;
+        if (isParent)
         {
-            if (animancer.Animator.avatar != null)
-                fade = 0;
-            animancer.Animator.avatar = null;
+            animancer.Animator.avatar = AnimationReferencer.Instance.human;
         }
-        else
-        {
-            if (animancer.Animator.avatar == null)
-                fade = 0;
-            if (isParent)
-            {
-                animancer.Animator.avatar = AnimationReferencer.Instance.human;
-            }
-        }
+
         var state = animancer.Play(FindAnim(clip), fade);
         state.Speed = speed;
         isAnimationEnded = false;

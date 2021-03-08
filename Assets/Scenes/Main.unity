@@ -944,8 +944,9 @@ MonoBehaviour:
       type: 3}
   - animationType: 8
     animation: {fileID: 7400000, guid: 770d4df5aa04fc447b9e29f5badf1149, type: 3}
-  - animationType: 0
-    animation: {fileID: 0}
+  - animationType: 9
+    animation: {fileID: -203655887218126122, guid: e9a28df58ba1d5847918ff5d5d6fb145,
+      type: 3}
   - animationType: 0
     animation: {fileID: 0}
   - animationType: 0
