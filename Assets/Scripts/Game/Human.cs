@@ -25,10 +25,10 @@ public class Human : Animations
         PlayAnim(animationType,.3f,1);
     }
 
-    public IEnumerator PlayDefaultAnimation(AnimationType animationType)
+    public IEnumerator PlayDefaultAnimation(AnimationType animationType, float time = 1)
     {
         yield return new WaitForSeconds(.3f);
-        PlayAnim(animationType,.3f,1);
+        PlayAnim(animationType,.3f, time);
     }
 
     public IEnumerator Standing()

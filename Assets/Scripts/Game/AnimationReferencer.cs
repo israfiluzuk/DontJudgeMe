@@ -15,6 +15,17 @@ public enum AnimationType
     SitToStand,
     TurnLeft45,
     Yelling,
+    TurnLeft90,
+    TurningRight90,
+    TurnRight45,
+    Crouching,
+    CrouchTurnLeft90,
+    CrouchingIdle,
+    PistolIdle,
+    Begging,
+    BeggingIdle,
+    Moving,
+
 }
 
 public class AnimationReferencer : LocalSingleton<AnimationReferencer>
