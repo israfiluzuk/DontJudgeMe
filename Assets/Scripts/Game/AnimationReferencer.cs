@@ -25,6 +25,10 @@ public enum AnimationType
     Begging,
     BeggingIdle,
     Moving,
+    HitlerSitting,
+    BangingFist,
+    SittingAndPointing,
+    SittingAndAngry,
 
 }
 

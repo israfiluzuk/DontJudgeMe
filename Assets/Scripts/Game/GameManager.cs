@@ -40,6 +40,8 @@ public class GameManager : LocalSingleton<GameManager>
     public BadManGameState badManGameState;
     public float power;
     public float radius;
+
+    public List<Transform> Scene;
     // Start is called before the first frame update
     void Start()
     {

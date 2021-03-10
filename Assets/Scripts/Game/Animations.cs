@@ -37,13 +37,6 @@ public class Animations : MonoBehaviour
     public bool isParent;
     public void PlayAnim(AnimationType clip, float fade = 0.3f, float speed = 1, Action endAnimation = null)
     {
-        if (animancer.Animator.avatar == null)
-            fade = 0;
-        if (isParent)
-        {
-            animancer.Animator.avatar = AnimationReferencer.Instance.human;
-        }
-
         var state = animancer.Play(FindAnim(clip), fade);
         state.Speed = speed;
         isAnimationEnded = false;
