@@ -47,7 +47,8 @@ public class RocketShoot : MonoBehaviour
             passenger[i].transform.DOMove(passengerLocation1.position, 3);
             yield return new WaitForSeconds(.1f);
         }
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(GameManager.Instance.LocateCamera(cameraPosition[0], 2));
     }
 
     // Update is called once per frame
@@ -74,7 +75,7 @@ public class RocketShoot : MonoBehaviour
             StartCoroutine(ButtonEvent());
         }
 
-        Camera.main.transform.LookAt(this.gameObject.transform);
+        //Camera.main.transform.LookAt(this.gameObject.transform);
     }
 
 
