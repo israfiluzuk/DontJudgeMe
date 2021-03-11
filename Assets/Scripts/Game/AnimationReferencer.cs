@@ -29,6 +29,9 @@ public enum AnimationType
     BangingFist,
     SittingAndPointing,
     SittingAndAngry,
+    PassengerReaction1,
+    PassengerReaction2,
+    PassengerReaction3,
 
 }
 
