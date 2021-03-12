@@ -9,7 +9,7 @@ public class Passenger : Human
     void Start()
     {
         random = Random.Range(0,3);
-        print(random);
+
         if (random == 0)
             StartCoroutine(PlayMixamoAnimation(AnimationType.PassengerReaction1));
         else if (random == 1)

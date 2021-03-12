@@ -32,6 +32,9 @@ public enum AnimationType
     PassengerReaction1,
     PassengerReaction2,
     PassengerReaction3,
+    StandingArguing1,
+    StandingArguing2,
+    StandingArguingHitler,
 
 }
 

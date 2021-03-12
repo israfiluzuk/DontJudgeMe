@@ -12,7 +12,7 @@ public enum BadManGameState
     Police,
 }
 
-public class GameManager : LocalSingleton<GameManager>
+public class GameManager : GenericSingleton<GameManager>
 {
     [SerializeField] BadMan badMan;
     [SerializeField] PryingMan pryingMan;
@@ -42,6 +42,7 @@ public class GameManager : LocalSingleton<GameManager>
     public float radius;
 
     public List<Transform> Scene;
+    [SerializeField] Hitler hitler;
     // Start is called before the first frame update
     void Start()
     {
@@ -287,5 +288,10 @@ public class GameManager : LocalSingleton<GameManager>
     {
         yield return new WaitForSeconds(.3f);
         transform.DOJump(carJumpPos.position, 2, 1, .5f);
+    }
+
+    public void HitlerAnimation()
+    {
+        hitler.PlaySittingAnimation();
     }
 }

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Hitler : Human
 {
+    [SerializeField] GameObject sceneHitler;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(PlaySittingAnimation());
+
     }
 
-    IEnumerator PlaySittingAnimation()
+    internal IEnumerator PlaySittingAnimation()
     {
         yield return new WaitForSeconds(.4f);
         PlayAnim(AnimationType.SittingAndAngry, .3f);
@@ -25,6 +26,13 @@ public class Hitler : Human
     void Update()
     {
         StartCoroutine(SecondUpdate());
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (sceneHitler.activeInHierarchy)
+            {
+                StartCoroutine(PlaySittingAnimation());
+            }
+        }
     }
 
     IEnumerator SecondUpdate()

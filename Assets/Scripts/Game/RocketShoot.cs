@@ -16,6 +16,7 @@ public class RocketShoot : MonoBehaviour
     [SerializeField] Transform passengerLocation1;
     [SerializeField] Transform passengerLocation2;
     [SerializeField] List<Passenger> passenger;
+    [SerializeField] Button buttonLiftOff;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,10 @@ public class RocketShoot : MonoBehaviour
         ScaleButton(Vector3.zero);
         yield return new WaitForSeconds(1);
         StartCoroutine(PassengerMoveToRocket());
+        yield return new WaitForSeconds(2);
+        StartCoroutine(GameManager.Instance.LocateCamera(cameraPosition[0].transform, 2));
+        yield return new WaitForSeconds(1);
+        ScaleButton(Vector3.one);
     }
 
     IEnumerator PassengerMoveToRocket()
@@ -42,13 +47,25 @@ public class RocketShoot : MonoBehaviour
         {
             passenger[i].PlayAnim(AnimationType.TurnLeft90);
             yield return new WaitForSeconds(1f);
-            passenger[i].transform.DORotate(new Vector3(0,-45,0),.2f);
+            passenger[i].transform.DORotate(new Vector3(0, -45, 0), .2f);
             passenger[i].PlayAnim(AnimationType.Walking);
-            passenger[i].transform.DOMove(passengerLocation1.position, 3);
-            yield return new WaitForSeconds(.1f);
+            passenger[i].transform.DOMove(passengerLocation1.position, 2);
+            yield return new WaitForSeconds(.05f);
         }
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(GameManager.Instance.LocateCamera(cameraPosition[0], 2));
+        yield return new WaitForSeconds(1f); 
+    }
+
+    public void RocketLiftOff()
+    {
+        ScaleButton(Vector3.zero);
+        gameObject.GetComponent<ConstantForce>().force = Vector3.up * liftSpeed;
+        gameObject.GetComponent<ConstantForce>().relativeTorque = new Vector3(0, turnSpeed, 0);
+        for (int i = 0; i < rocketParticles.Count; i++)
+        {
+            rocketParticles[i].Play();
+        }
+        StartCoroutine(SmokeParticle());
+        StartCoroutine(GameManager.Instance.LocateCamera(cameraPosition[3],8));
     }
 
     // Update is called once per frame
@@ -56,14 +73,7 @@ public class RocketShoot : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            gameObject.GetComponent<ConstantForce>().force = Vector3.up * liftSpeed;
-            gameObject.GetComponent<ConstantForce>().relativeTorque = new Vector3(0, turnSpeed, 0);
-            for (int i = 0; i < rocketParticles.Count; i++)
-            {
-                rocketParticles[i].Play();
-            }
-
-            StartCoroutine(SmokeParticle());
+            RocketLiftOff();
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -78,7 +88,14 @@ public class RocketShoot : MonoBehaviour
         //Camera.main.transform.LookAt(this.gameObject.transform);
     }
 
-
+    IEnumerator FollowTheObject(GameObject gameObject)
+    {
+        while (true)
+        {
+            Camera.main.transform.LookAt(gameObject.transform);
+            yield return new WaitForSeconds(.01f);
+        }
+    }
 
     private IEnumerator CameraMovement()
     {
