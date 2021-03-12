@@ -35,7 +35,11 @@ public enum AnimationType
     StandingArguing1,
     StandingArguing2,
     StandingArguingHitler,
-
+    HappyMan,
+    HappyHitler,
+    SadMan,
+    SadManHitler,
+    ManHitTable,
 }
 
 public class AnimationReferencer : LocalSingleton<AnimationReferencer>
