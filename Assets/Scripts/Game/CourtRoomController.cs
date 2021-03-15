@@ -27,6 +27,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
     [SerializeField] List<Transform> documents;
     [SerializeField] Transform documentPosUp;
     [SerializeField] Transform documentPosDown;
+    [SerializeField] Transform prisonManPos;
+    [SerializeField] List<Transform> cameraPos;
+    [SerializeField] Button buttonNextPerson;
 
     CourtState courtState;
     // Start is called before the first frame update
@@ -71,6 +74,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
             DocumentMovement(documents[1], documentPosDown);
             StartCoroutine(hitler.PlayMixamoAnimation(AnimationType.HappyHitler));
         }
+        yield return new WaitForSeconds(2);
+
+        ButtonAnimation(buttonNextPerson.transform, Vector3.one);
     }
     private IEnumerator PunishmentSadness(CourtState courtState)
     {
@@ -106,6 +112,63 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ButtonAnimation(buttonForgive.transform, Vector3.zero);
         StartCoroutine(PunishmentSadness(courtState));
         StartCoroutine(judge.JudgeHit());
+        StartCoroutine(PrisonScene(courtState));
+    }
+
+    private IEnumerator PrisonScene(CourtState currentState)
+    {
+        yield return new WaitForSeconds(2.5f);
+        StartCoroutine(GameManager.Instance.LocateCamera(cameraPos[1], .4f));
+        yield return new WaitForSeconds(.5f);
+
+        if (currentState == CourtState.OldMan)
+        {
+            TransformMovement(pryingMan.transform, prisonManPos);
+            yield return new WaitForSeconds(.5f);
+            StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadMan));
+            yield return new WaitForSeconds(1);
+            ButtonAnimation(buttonNextPerson.transform, Vector3.one);
+
+        }
+        else if (currentState == CourtState.Hitler)
+        {
+            TransformMovement(hitler.transform, prisonManPos);
+            yield return new WaitForSeconds(.5f);
+            StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadManHitler));
+            yield return new WaitForSeconds(1);
+            ButtonAnimation(buttonNextPerson.transform, Vector3.one);
+        }
+        else if (currentState == CourtState.ElonMusk)
+        {
+            TransformMovement(elonMusk.transform, prisonManPos);
+            yield return new WaitForSeconds(.5f);
+            StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadMan));
+            yield return new WaitForSeconds(1);
+            ButtonAnimation(buttonNextPerson.transform, Vector3.one);
+        }
+
+        yield return new WaitForSeconds(.5f);
+
+    }
+
+    public void ButtonNextPerson()
+    {
+
+        ButtonAnimation(buttonNextPerson.transform, Vector3.zero);
+
+        StartCoroutine(GameManager.Instance.LocateCamera(cameraPos[0], .5f));
+        if (courtState == CourtState.OldMan)
+            HitlerState();
+        else if (courtState == CourtState.Hitler)
+            ElonMuskState();
+        else if (courtState == CourtState.ElonMusk)
+            PryingManState();
+    }
+
+    private void TransformMovement(Transform transform, Transform finalTransform)
+    {
+        transform.DOMove(finalTransform.position, .5f);
+        transform.DORotateQuaternion(finalTransform.rotation, .5f);
     }
 
     // Update is called once per frame
@@ -113,38 +176,15 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            courtState = CourtState.OldMan;
-            ScaleTo(pryingMan.transform, new Vector3(2, 2, 2));
-            ScaleTo(hitler.transform, Vector3.zero);
-            ScaleTo(elonMusk.transform, Vector3.zero);
-            pryingMan.PlayAnim(AnimationType.StandingArguing1);
-            ObjectScaleTo(speechBubbleTransform, Vector3.one, "I'm not guilty. I did nothing.");
-            speechBubleButton.localScale = Vector3.one;
-            ButtonAnimation(buttonPunishment.transform, Vector3.one);
-            ButtonAnimation(buttonForgive.transform, Vector3.one);
-            DocumentMovement(documents[0], documentPosUp);
+            PryingManState();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            courtState = CourtState.Hitler;
-            ScaleTo(hitler.transform, new Vector3(.02f, .02f, .02f));
-            ScaleTo(pryingMan.transform, Vector3.zero);
-            ScaleTo(elonMusk.transform, Vector3.zero);
-            hitler.PlayAnim(AnimationType.StandingArguingHitler);
-            ButtonAnimation(buttonPunishment.transform, Vector3.one);
-            ButtonAnimation(buttonForgive.transform, Vector3.one);
-            DocumentMovement(documents[1], documentPosUp);
+            HitlerState();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            courtState = CourtState.ElonMusk;
-            ScaleTo(elonMusk.transform, new Vector3(2, 2, 2));
-            ScaleTo(pryingMan.transform, Vector3.zero);
-            ScaleTo(hitler.transform, Vector3.zero);
-            elonMusk.PlayAnim(AnimationType.StandingArguing2);
-            ButtonAnimation(buttonPunishment.transform, Vector3.one);
-            ButtonAnimation(buttonForgive.transform, Vector3.one);
-            DocumentMovement(documents[2], documentPosUp);
+            ElonMuskState();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -157,6 +197,49 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         //    ScaleTo(hitler.transform, Vector3.zero);
         //    ScaleTo(elonMusk.transform, Vector3.zero);
         //}
+    }
+
+    private void ElonMuskState()
+    {
+        speechBubble.isSayToClear = true;
+        courtState = CourtState.ElonMusk;
+        ScaleTo(elonMusk.transform, new Vector3(2, 2, 2));
+        ScaleTo(pryingMan.transform, Vector3.zero);
+        ScaleTo(hitler.transform, Vector3.zero);
+        elonMusk.PlayAnim(AnimationType.StandingArguing2);
+        ObjectScaleTo(speechBubbleTransform, Vector3.one, "I just want to take people to Mars");
+        ButtonAnimation(buttonPunishment.transform, Vector3.one);
+        ButtonAnimation(buttonForgive.transform, Vector3.one);
+        DocumentMovement(documents[2], documentPosUp);
+    }
+
+    private void HitlerState()
+    {
+        speechBubble.isSayToClear = true;
+        courtState = CourtState.Hitler;
+        ScaleTo(hitler.transform, new Vector3(.02f, .02f, .02f));
+        ScaleTo(pryingMan.transform, Vector3.zero);
+        ScaleTo(elonMusk.transform, Vector3.zero);
+        hitler.PlayAnim(AnimationType.StandingArguingHitler);
+        ObjectScaleTo(speechBubbleTransform, Vector3.one, "I have done this for my people!");
+        ButtonAnimation(buttonPunishment.transform, Vector3.one);
+        ButtonAnimation(buttonForgive.transform, Vector3.one);
+        DocumentMovement(documents[1], documentPosUp);
+    }
+
+    private void PryingManState()
+    {
+        speechBubble.isSayToClear = true;
+        courtState = CourtState.OldMan;
+        ScaleTo(pryingMan.transform, new Vector3(2, 2, 2));
+        ScaleTo(hitler.transform, Vector3.zero);
+        ScaleTo(elonMusk.transform, Vector3.zero);
+        pryingMan.PlayAnim(AnimationType.StandingArguing1);
+        ObjectScaleTo(speechBubbleTransform, Vector3.one, "I'm not guilty. I did nothing.");
+        speechBubleButton.localScale = Vector3.one;
+        ButtonAnimation(buttonPunishment.transform, Vector3.one);
+        ButtonAnimation(buttonForgive.transform, Vector3.one);
+        DocumentMovement(documents[0], documentPosUp);
     }
 
     public void DocumentMovement(Transform documentTransform, Transform finalPos)
