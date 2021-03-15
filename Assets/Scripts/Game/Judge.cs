@@ -13,6 +13,7 @@ public class Judge : Human
 
     internal IEnumerator JudgeHit()
     {
+        yield return new WaitForSeconds(.4f);
         PlayAnim(AnimationType.ManHitTable);
         yield return new WaitForSeconds(1);
         transform.DORotate(new Vector3(0,0,0),.1f);

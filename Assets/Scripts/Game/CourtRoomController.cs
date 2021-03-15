@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
     [SerializeField] Button buttonPunishment;
     [SerializeField] Button buttonForgive;
     [SerializeField] Judge judge;
+    [SerializeField] List<Transform> documents;
+    [SerializeField] Transform documentPosUp;
+    [SerializeField] Transform documentPosDown;
 
     CourtState courtState;
     // Start is called before the first frame update
@@ -53,15 +57,18 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         yield return new WaitForSeconds(1);
         if (courtState == CourtState.OldMan)
         {
+            DocumentMovement(documents[0], documentPosDown);
             StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.HappyMan));
             ScaleTo(speechBubbleTransform, Vector3.zero);
         }
         else if (courtState == CourtState.ElonMusk)
         {
+            DocumentMovement(documents[2], documentPosDown);
             StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.HappyMan));
         }
         else if (courtState == CourtState.Hitler)
         {
+            DocumentMovement(documents[1], documentPosDown);
             StartCoroutine(hitler.PlayMixamoAnimation(AnimationType.HappyHitler));
         }
     }
@@ -70,15 +77,18 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         yield return new WaitForSeconds(1);
         if (courtState == CourtState.OldMan)
         {
+            DocumentMovement(documents[0], documentPosDown);
             StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.SadMan));
             ScaleTo(speechBubbleTransform, Vector3.zero);
         }
         else if (courtState == CourtState.ElonMusk)
         {
+            DocumentMovement(documents[2], documentPosDown);
             StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.SadMan));
         }
         else if (courtState == CourtState.Hitler)
         {
+            DocumentMovement(documents[1], documentPosDown);
             StartCoroutine(hitler.PlayMixamoAnimation(AnimationType.SadManHitler));
         }
     }
@@ -88,12 +98,14 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ButtonAnimation(buttonPunishment.transform, Vector3.zero);
         ButtonAnimation(buttonForgive.transform, Vector3.zero);
         StartCoroutine(ForgivenHappiness(courtState));
+        StartCoroutine(judge.JudgeHit());
     }
     public void Punishment()
     {
         ButtonAnimation(buttonPunishment.transform, Vector3.zero);
         ButtonAnimation(buttonForgive.transform, Vector3.zero);
         StartCoroutine(PunishmentSadness(courtState));
+        StartCoroutine(judge.JudgeHit());
     }
 
     // Update is called once per frame
@@ -110,6 +122,7 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
             speechBubleButton.localScale = Vector3.one;
             ButtonAnimation(buttonPunishment.transform, Vector3.one);
             ButtonAnimation(buttonForgive.transform, Vector3.one);
+            DocumentMovement(documents[0], documentPosUp);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -120,6 +133,7 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
             hitler.PlayAnim(AnimationType.StandingArguingHitler);
             ButtonAnimation(buttonPunishment.transform, Vector3.one);
             ButtonAnimation(buttonForgive.transform, Vector3.one);
+            DocumentMovement(documents[1], documentPosUp);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -130,6 +144,7 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
             elonMusk.PlayAnim(AnimationType.StandingArguing2);
             ButtonAnimation(buttonPunishment.transform, Vector3.one);
             ButtonAnimation(buttonForgive.transform, Vector3.one);
+            DocumentMovement(documents[2], documentPosUp);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -144,5 +159,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         //}
     }
 
-
+    public void DocumentMovement(Transform documentTransform, Transform finalPos)
+    {
+        documentTransform.DOMove(finalPos.position, .5f);
+        documentTransform.DORotateQuaternion(finalPos.rotation, .5f);
+    }
 }
