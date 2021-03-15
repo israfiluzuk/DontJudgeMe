@@ -20,7 +20,7 @@ public class ETFXFireProjectile : MonoBehaviour
 
     void Start()
     {
-        selectedProjectileButton = GameObject.Find("Button").GetComponent<ETFXButtonScript>();
+        //selectedProjectileButton = GameObject.Find("Button").GetComponent<ETFXButtonScript>();
     }
 
     RaycastHit hit;

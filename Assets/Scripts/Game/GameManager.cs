@@ -36,6 +36,12 @@ public class GameManager : GenericSingleton<GameManager>
     [SerializeField] List<Transform> policeStopPosition;
     [SerializeField] Button runButton;
     [SerializeField] List<Transform> pryingManPosition;
+    [SerializeField] Transform arrow;
+    [SerializeField] Transform arrowTop1;
+    [SerializeField] Transform arrowTop2;
+    [SerializeField] Transform arrowBottom1;
+    [SerializeField] Transform arrowBottom2;
+    [SerializeField] Transform arrow2;
 
     public BadManGameState badManGameState;
     public float power;
@@ -46,25 +52,41 @@ public class GameManager : GenericSingleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(badMan.Standing());
-        StartCoroutine(pryingMan.Sitting());
-        Rescale(police[0].transform, Vector3.zero);
-        Rescale(police[1].transform, Vector3.zero);
-        runButton.onClick.AddListener(call: () => RunButton());
+        if (badMan.gameObject.activeInHierarchy)
+        {
+            StartCoroutine(badMan.Standing());
+            StartCoroutine(pryingMan.Sitting());
+            Rescale(police[0].transform, Vector3.zero);
+            Rescale(police[1].transform, Vector3.zero);
+            ArrowTopDown(arrowBottom1);
+
+        }
     }
 
-    private void RunButton()
+
+
+    private void ArrowTopDown(Transform bottowPoint)
+    {
+        if (arrow.gameObject.activeInHierarchy)
+            arrow.transform.DOMove(bottowPoint.position, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+    }
+    private void ArrowTopDown2(Transform bottowPoint)
+    {
+        if (arrow2.gameObject.activeInHierarchy)
+            arrow2.transform.DOMove(bottowPoint.position, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+    }
+
+    public void RunButton()
     {
         StartCoroutine(BadManEscaping());
     }
 
     IEnumerator BadManEscaping()
     {
-        Vector3 vector = new Vector3(0,-82,0);
+        Vector3 vector = new Vector3(0, -82, 0);
         //runButton.transform.DOScale(Vector3.zero, .3f).SetEase(Ease.OutElastic);
         runButton.gameObject.SetActive(false);
-        StartCoroutine(LocateCamera(cameraPosition[3], .4f));
-        yield return new WaitForSeconds(.5f);
+        StartCoroutine(LocateCamera(cameraPosition[3], .38f));
         Time.timeScale = 1;
         StartCoroutine(badMan.PlayMixamoAnimation(AnimationType.Walking));
         badMan.transform.DOMove(badManPosition[2].position, 2);
@@ -126,14 +148,14 @@ public class GameManager : GenericSingleton<GameManager>
         StartCoroutine(human.PlayDefaultAnimation(AnimationType.TurningRight90, 1));
         yield return new WaitForSeconds(1);
         StartCoroutine(human.PlayMixamoAnimation(AnimationType.PistolIdle));
-        human.transform.DORotate(new Vector3(0,45,0),.4f);
+        human.transform.DORotate(new Vector3(0, 45, 0), .4f);
         yield return new WaitForSeconds(.5f);
         StartCoroutine(Begging());
     }
     IEnumerator Begging()
     {
         StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Moving));
-        pryingMan.transform.DOMove(pryingManPosition[0].position,1);
+        pryingMan.transform.DOMove(pryingManPosition[0].position, 1);
         //pryingMan.transform.DOMove(pryingMan.transform.position, .2f);
         yield return new WaitForSeconds(1);
         StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Begging));
@@ -148,7 +170,7 @@ public class GameManager : GenericSingleton<GameManager>
     IEnumerator PoliceCar(Transform carTransform, Transform endLocation, float time)
     {
         carTransform.DOMove(endLocation.position, time);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.58f);
         Rescale(police[0].transform, new Vector3(1.2f, 1.2f, 1.2f));
         Rescale(police[1].transform, new Vector3(1.2f, 1.2f, 1.2f));
         StartCoroutine(PoliceRunning(police[0], policeStopPosition[0], .3f));
@@ -161,11 +183,13 @@ public class GameManager : GenericSingleton<GameManager>
         StartCoroutine(LocateCamera(cameraPosition[2], .58f));
         yield return new WaitForSeconds(.4f);
         runButton.transform.DOScale(Vector3.one, .2f).SetEase(Ease.OutElastic);
-        Time.timeScale = .1f;
+        Time.timeScale = .3f;
     }
 
     IEnumerator RunningState()
     {
+        police[0].transform.localScale = Vector3.zero;
+        police[1].transform.localScale = Vector3.zero;
         yield return new WaitForSeconds(1);
         StartCoroutine(PoliceCar(policeCar, policeCarStopLocation, 1));
     }
@@ -184,6 +208,7 @@ public class GameManager : GenericSingleton<GameManager>
 
     internal IEnumerator CreateGrenade(Transform explosionPosition, Transform firePosition, BadManGameState badManGameState)
     {
+        arrow2.gameObject.SetActive(false);
         yield return new WaitForSeconds(.3f);
         GameObject myGrenade = Instantiate(grenadePrefab, grenadeHandParent.position, Quaternion.identity);
         grenadePrefab.transform.localScale = new Vector3(.15f, .12f, .12f);
@@ -205,6 +230,11 @@ public class GameManager : GenericSingleton<GameManager>
         myGrenade.transform.localScale = Vector3.zero;
         badMan.EvilDegree++;
         StartCoroutine(PryingManReaction(badManGameState));
+
+        arrow.gameObject.SetActive(false);
+        ArrowTopDown2(arrowBottom2);
+        if (badMan.EvilDegree > 1)
+            arrow2.gameObject.SetActive(false);
     }
 
     IEnumerator PryingManReaction(BadManGameState badManGameState)
@@ -241,7 +271,7 @@ public class GameManager : GenericSingleton<GameManager>
         {
             StartCoroutine(Turning(human, AnimationType.TurnLeft90));
             yield return new WaitForSeconds(.8f);
-            human.transform.DORotate(new Vector3(0, -90, 0),.3f);
+            human.transform.DORotate(new Vector3(0, -90, 0), .3f);
         }
 
         StartCoroutine(LocateCamera(cameraPosition[1]));
@@ -252,7 +282,7 @@ public class GameManager : GenericSingleton<GameManager>
         {
             StartCoroutine(Turning(human, AnimationType.TurnRight45));
             yield return new WaitForSeconds(.78f);
-            human.transform.DORotate(new Vector3(0,0,0), .2f);
+            human.transform.DORotate(new Vector3(0, 0, 0), .2f);
         }
     }
 
