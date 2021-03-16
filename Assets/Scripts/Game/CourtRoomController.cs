@@ -67,14 +67,16 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         else if (courtState == CourtState.ElonMusk)
         {
             DocumentMovement(documents[2], documentPosDown);
-            StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.HappyMan));
+            StartCoroutine(elonMusk.PlayMixamoAnimation(AnimationType.HappyMan));
+            ScaleTo(speechBubbleTransform, Vector3.zero);
         }
         else if (courtState == CourtState.Hitler)
         {
             DocumentMovement(documents[1], documentPosDown);
             StartCoroutine(hitler.PlayMixamoAnimation(AnimationType.HappyHitler));
+            ScaleTo(speechBubbleTransform, Vector3.zero);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         ButtonAnimation(buttonNextPerson.transform, Vector3.one);
     }
@@ -91,11 +93,13 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         {
             DocumentMovement(documents[2], documentPosDown);
             StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.SadMan));
+            ScaleTo(speechBubbleTransform, Vector3.zero);
         }
         else if (courtState == CourtState.Hitler)
         {
             DocumentMovement(documents[1], documentPosDown);
             StartCoroutine(hitler.PlayMixamoAnimation(AnimationType.SadManHitler));
+            ScaleTo(speechBubbleTransform, Vector3.zero);
         }
     }
 
@@ -126,8 +130,6 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
             TransformMovement(pryingMan.transform, prisonManPos);
             yield return new WaitForSeconds(.5f);
             StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadMan));
-            yield return new WaitForSeconds(1);
-            ButtonAnimation(buttonNextPerson.transform, Vector3.one);
 
         }
         else if (currentState == CourtState.Hitler)
@@ -135,19 +137,16 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
             TransformMovement(hitler.transform, prisonManPos);
             yield return new WaitForSeconds(.5f);
             StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadManHitler));
-            yield return new WaitForSeconds(1);
-            ButtonAnimation(buttonNextPerson.transform, Vector3.one);
         }
         else if (currentState == CourtState.ElonMusk)
         {
             TransformMovement(elonMusk.transform, prisonManPos);
             yield return new WaitForSeconds(.5f);
             StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadMan));
-            yield return new WaitForSeconds(1);
-            ButtonAnimation(buttonNextPerson.transform, Vector3.one);
         }
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
+        ButtonAnimation(buttonNextPerson.transform, Vector3.one);
 
     }
 
@@ -157,12 +156,13 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ButtonAnimation(buttonNextPerson.transform, Vector3.zero);
 
         StartCoroutine(GameManager.Instance.LocateCamera(cameraPos[0], .5f));
+
         if (courtState == CourtState.OldMan)
-            HitlerState();
+            StartCoroutine(HitlerState());
         else if (courtState == CourtState.Hitler)
-            ElonMuskState();
+            StartCoroutine(ElonMuskState());
         else if (courtState == CourtState.ElonMusk)
-            PryingManState();
+            StartCoroutine(PryingManState());
     }
 
     private void TransformMovement(Transform transform, Transform finalTransform)
@@ -176,15 +176,15 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            PryingManState();
+            StartCoroutine(PryingManState());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            HitlerState();
+            StartCoroutine(HitlerState());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ElonMuskState();
+            StartCoroutine(ElonMuskState());
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -199,8 +199,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         //}
     }
 
-    private void ElonMuskState()
+    private IEnumerator ElonMuskState()
     {
+        yield return new WaitForSeconds(1);
         speechBubble.isSayToClear = true;
         courtState = CourtState.ElonMusk;
         ScaleTo(elonMusk.transform, new Vector3(2, 2, 2));
@@ -213,8 +214,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         DocumentMovement(documents[2], documentPosUp);
     }
 
-    private void HitlerState()
+    private IEnumerator HitlerState()
     {
+        yield return new WaitForSeconds(1);
         speechBubble.isSayToClear = true;
         courtState = CourtState.Hitler;
         ScaleTo(hitler.transform, new Vector3(.02f, .02f, .02f));
@@ -227,8 +229,9 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         DocumentMovement(documents[1], documentPosUp);
     }
 
-    private void PryingManState()
+    private IEnumerator PryingManState()
     {
+        yield return new WaitForSeconds(1);
         speechBubble.isSayToClear = true;
         courtState = CourtState.OldMan;
         ScaleTo(pryingMan.transform, new Vector3(2, 2, 2));

@@ -86,7 +86,7 @@ public class GameManager : GenericSingleton<GameManager>
         Vector3 vector = new Vector3(0, -82, 0);
         //runButton.transform.DOScale(Vector3.zero, .3f).SetEase(Ease.OutElastic);
         runButton.gameObject.SetActive(false);
-        StartCoroutine(LocateCamera(cameraPosition[3], .38f));
+        StartCoroutine(LocateCamera(cameraPosition[0], .38f));
         Time.timeScale = 1;
         StartCoroutine(badMan.PlayMixamoAnimation(AnimationType.Walking));
         badMan.transform.DOMove(badManPosition[2].position, 2);
@@ -154,17 +154,17 @@ public class GameManager : GenericSingleton<GameManager>
     }
     IEnumerator Begging()
     {
+        //pryingMan.transform.DORotateQuaternion(pryingMan.transform.rotation, .2f);
         StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Moving));
         pryingMan.transform.DOMove(pryingManPosition[0].position, 1);
+        pryingMan.transform.DORotateQuaternion(pryingManPosition[1].rotation, .4f);
         //pryingMan.transform.DOMove(pryingMan.transform.position, .2f);
         yield return new WaitForSeconds(1);
         StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Begging));
         pryingMan.transform.DOMove(pryingMan.transform.position, .2f);
-        pryingMan.transform.DORotateQuaternion(pryingMan.transform.rotation, .2f);
         yield return new WaitForSeconds(1);
         StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.BeggingIdle));
         pryingMan.transform.DOMove(pryingManPosition[1].position, .4f);
-        pryingMan.transform.DORotateQuaternion(pryingManPosition[1].rotation, .4f);
     }
 
     IEnumerator PoliceCar(Transform carTransform, Transform endLocation, float time)
@@ -181,9 +181,8 @@ public class GameManager : GenericSingleton<GameManager>
     {
         StartCoroutine(badMan.PlayDefaultAnimation(AnimationType.TurnLeft90, .5f));
         StartCoroutine(LocateCamera(cameraPosition[2], .58f));
-        yield return new WaitForSeconds(.4f);
-        runButton.transform.DOScale(Vector3.one, .2f).SetEase(Ease.OutElastic);
         Time.timeScale = .3f;
+        yield return new WaitForSeconds(.4f);
     }
 
     IEnumerator RunningState()
@@ -192,6 +191,9 @@ public class GameManager : GenericSingleton<GameManager>
         police[1].transform.localScale = Vector3.zero;
         yield return new WaitForSeconds(1);
         StartCoroutine(PoliceCar(policeCar, policeCarStopLocation, 1));
+        StartCoroutine(badMan.PlayDefaultAnimation(AnimationType.TurnLeft90, .5f));
+        yield return new WaitForSeconds(.4f);
+        runButton.transform.DOScale(Vector3.one, .2f).SetEase(Ease.OutElastic);
     }
 
     internal IEnumerator ThrowHandGrenade(Human human, Transform explosionPosition, Transform firePosition, BadManGameState badManGameState)
