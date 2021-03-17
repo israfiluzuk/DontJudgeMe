@@ -222,6 +222,8 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ScaleTo(hitler.transform, new Vector3(.02f, .02f, .02f));
         ScaleTo(pryingMan.transform, Vector3.zero);
         ScaleTo(elonMusk.transform, Vector3.zero);
+        hitler.PlayAnim(AnimationType.SoldierSalute);
+        yield return new WaitForSeconds(3);
         hitler.PlayAnim(AnimationType.StandingArguingHitler);
         ObjectScaleTo(speechBubbleTransform, Vector3.one, "I have done this for my people!");
         ButtonAnimation(buttonPunishment.transform, Vector3.one);

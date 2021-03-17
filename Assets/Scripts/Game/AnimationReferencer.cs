@@ -40,6 +40,7 @@ public enum AnimationType
     SadMan,
     SadManHitler,
     ManHitTable,
+    SoldierSalute,
 }
 
 public class AnimationReferencer : LocalSingleton<AnimationReferencer>
