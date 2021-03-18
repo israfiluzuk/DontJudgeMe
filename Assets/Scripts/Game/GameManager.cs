@@ -43,6 +43,8 @@ public class GameManager : GenericSingleton<GameManager>
     [SerializeField] Transform arrowBottom2;
     [SerializeField] Transform arrow2;
 
+    [SerializeField] Image fadePanel;
+
     public BadManGameState badManGameState;
     public float power;
     public float radius;
@@ -63,7 +65,10 @@ public class GameManager : GenericSingleton<GameManager>
         }
     }
 
-
+    public void FadeAnimation(bool isFade)
+    {
+        fadePanel.DOFade(isFade ? 1 : 0, .5f);
+    }
 
     private void ArrowTopDown(Transform bottowPoint)
     {
