@@ -37,6 +37,8 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
     [SerializeField] Transform speakingLocation;
     [SerializeField] Transform roomLeavingLocation;
     [SerializeField] List<Transform> turnedManTransform;
+    [SerializeField] Guard guard;
+    [SerializeField] List<Transform> guardLocations;
 
     CourtState courtState;
     // Start is called before the first frame update
@@ -49,16 +51,20 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         spiderman.PlayAnim(AnimationType.SpidermanStanding);
         trump.PlayAnim(AnimationType.TrumpStanding);
         StartCoroutine(PryingManState());
+        if (guard.gameObject.activeInHierarchy)
+            guard.PlayAnim(AnimationType.GuardIdle);
     }
 
     private void ScaleTo(Transform transform, Vector3 vector3)
     {
         transform.DOScale(vector3, 1).SetEase(Ease.OutElastic);
+        //transform.DOPunchScale(vector3, 1);
     }
 
     private void ButtonAnimation(Transform transform, Vector3 scale)
     {
-        transform.DOScale(scale, 1).SetEase(Ease.OutElastic);
+        transform.DOScale(scale, 1).SetEase(Ease.InOutBack);
+        //transform.DOPunchScale(scale, 1);
     }
 
     public void ObjectScaleTo(Transform transform, Vector3 scale, string speechText)
@@ -72,40 +78,46 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         yield return new WaitForSeconds(1);
         if (courtState == CourtState.OldMan)
         {
-            pryingMan.isInPrison = false;
+            pryingMan.isHumanGuilty = false;
             DocumentMovement(documents[0], documentPosDown);
             StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.HappyMan));
             ScaleTo(speechBubbleTransform, Vector3.zero);
+            yield return new WaitForSeconds(1.2f);
+            StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Standing));
+
         }
         else if (courtState == CourtState.ElonMusk)
         {
-            elonMusk.isInPrison = false;
+            elonMusk.isHumanGuilty = false;
             DocumentMovement(documents[2], documentPosDown);
             StartCoroutine(elonMusk.PlayMixamoAnimation(AnimationType.HappyMan));
             ScaleTo(speechBubbleTransform, Vector3.zero);
+            yield return new WaitForSeconds(1.2f);
+            StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.Standing));
         }
         else if (courtState == CourtState.Hitler)
         {
-            hitler.isInPrison = false;
+            hitler.isHumanGuilty = false;
             DocumentMovement(documents[1], documentPosDown);
             StartCoroutine(hitler.PlayMixamoAnimation(AnimationType.HappyHitler));
             ScaleTo(speechBubbleTransform, Vector3.zero);
+            yield return new WaitForSeconds(1.2f);
+            StartCoroutine(pryingMan.PlayMixamoAnimation(AnimationType.HitlerStanding));
         }
         else if (courtState == CourtState.Spiderman)
         {
-            spiderman.isInPrison = false;
-            DocumentMovement(documents[1], documentPosDown);
+            spiderman.isHumanGuilty = false;
+            DocumentMovement(documents[3], documentPosDown);
             StartCoroutine(spiderman.PlayMixamoAnimation(AnimationType.SpidermanHappy));
             ScaleTo(speechBubbleTransform, Vector3.zero);
         }
         else if (courtState == CourtState.Trump)
         {
-            trump.isInPrison = false;
-            DocumentMovement(documents[1], documentPosDown);
+            trump.isHumanGuilty = false;
+            DocumentMovement(documents[4], documentPosDown);
             StartCoroutine(trump.PlayMixamoAnimation(AnimationType.TrumpHappy));
             ScaleTo(speechBubbleTransform, Vector3.zero);
         }
-        yield return new WaitForSeconds(3);
 
         ButtonAnimation(buttonNextPerson.transform, Vector3.one);
         yield return new WaitForSeconds(.5f);
@@ -145,13 +157,13 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         }
         else if (courtState == CourtState.Spiderman)
         {
-            DocumentMovement(documents[1], documentPosDown);
+            DocumentMovement(documents[3], documentPosDown);
             StartCoroutine(spiderman.PlayMixamoAnimation(AnimationType.SpidermanSad));
             ScaleTo(speechBubbleTransform, Vector3.zero);
         }
         else if (courtState == CourtState.Trump)
         {
-            DocumentMovement(documents[1], documentPosDown);
+            DocumentMovement(documents[4], documentPosDown);
             StartCoroutine(trump.PlayMixamoAnimation(AnimationType.TrumpSad));
             ScaleTo(speechBubbleTransform, Vector3.zero);
         }
@@ -170,8 +182,114 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ButtonAnimation(buttonForgive.transform, Vector3.zero);
         StartCoroutine(PunishmentSadness(courtState));
         StartCoroutine(judge.JudgeHit());
-        StartCoroutine(PrisonScene(courtState));
+        StartCoroutine(PoliceScene(courtState));
+        //StartCoroutine(PrisonScene(courtState));
     }
+
+    IEnumerator PoliceScene(CourtState currentState)
+    {
+        yield return new WaitForSeconds(1);
+
+        if (currentState == CourtState.OldMan)
+        {
+            Vector3 oldManPos = new Vector3(-0.16f, 0f, 0);
+            pryingMan.isHumanGuilty = true;
+            pryingMan.PlayAnim(AnimationType.SadMan, .3f, 1.2f);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(guardLocations[1].position, 2.5f);
+            yield return new WaitForSeconds(2.5f);
+            guard.PlayAnim(AnimationType.GuardIdle, .3f, 1.2f);
+            yield return new WaitForSeconds(1);
+            pryingMan.transform.DOMove(oldManPos, .58f);
+            StartCoroutine(LeavingCourtRoom(pryingMan, AnimationType.ManTurnLeft, AnimationType.ManWalking, turnedManTransform[0], roomLeavingLocation));
+            yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.FadeAnimation(true);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(roomLeavingLocation.position, 1.8f);
+            yield return new WaitForSeconds(1.8f);
+            guard.transform.position = guardLocations[0].position;
+            GameManager.Instance.FadeAnimation(false);
+            guard.PlayAnim(AnimationType.GuardIdle);
+            pryingMan.gameObject.SetActive(false);
+            //pryingMan.PlayAnim(AnimationType.Running);
+        }
+        if (currentState == CourtState.Hitler)
+        {
+            Vector3 oldManPos = new Vector3(-0.16f, 0f, 0);
+            hitler.isHumanGuilty = true;
+            hitler.PlayAnim(AnimationType.SadMan, .3f, 1.2f);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(guardLocations[1].position, 2.5f);
+            yield return new WaitForSeconds(2.5f);
+            guard.PlayAnim(AnimationType.GuardIdle, .3f, 1.2f);
+            yield return new WaitForSeconds(1);
+            hitler.transform.DOMove(oldManPos, .58f);
+            StartCoroutine(LeavingCourtRoom(hitler, AnimationType.HitlerTurnLeft, AnimationType.HitlerWalking, turnedManTransform[0], roomLeavingLocation));
+            yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.FadeAnimation(true);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(roomLeavingLocation.position, 1.8f);
+            yield return new WaitForSeconds(1.8f);
+            GameManager.Instance.FadeAnimation(false);
+            guard.transform.position = guardLocations[0].position;
+            guard.PlayAnim(AnimationType.GuardIdle);
+            hitler.gameObject.SetActive(false);
+            //pryingMan.PlayAnim(AnimationType.Running);
+        }
+         if (currentState == CourtState.Spiderman)
+        {
+            Vector3 oldManPos = new Vector3(-0.16f, 0f, 0);
+            spiderman.isHumanGuilty = true;
+            spiderman.PlayAnim(AnimationType.SpidermanSad, .3f, 1.2f);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(guardLocations[1].position, 2.5f);
+            yield return new WaitForSeconds(2.5f);
+            guard.PlayAnim(AnimationType.GuardIdle, .3f, 1.2f);
+            yield return new WaitForSeconds(1);
+            spiderman.transform.DOMove(oldManPos, .58f);
+            StartCoroutine(LeavingCourtRoom(spiderman, AnimationType.SpidermanTurnLeft, AnimationType.SpidermanWalking, turnedManTransform[0], roomLeavingLocation));
+            yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.FadeAnimation(true);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(roomLeavingLocation.position, 1.8f);
+            yield return new WaitForSeconds(1.8f);
+            GameManager.Instance.FadeAnimation(false);
+            guard.transform.position = guardLocations[0].position;
+            guard.PlayAnim(AnimationType.GuardIdle);
+            spiderman.gameObject.SetActive(false);
+            //pryingMan.PlayAnim(AnimationType.Running);
+        }
+         
+         if (currentState == CourtState.Trump)
+        {
+            Vector3 oldManPos = new Vector3(-0.16f, 0f, 0);
+            trump.isHumanGuilty = true;
+            trump.PlayAnim(AnimationType.TrumpSad, .3f, 1.2f);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(guardLocations[1].position, 2.5f);
+            yield return new WaitForSeconds(2.5f);
+            guard.PlayAnim(AnimationType.GuardIdle, .3f, 1.2f);
+            yield return new WaitForSeconds(1);
+            trump.transform.DOMove(oldManPos, .58f);
+            StartCoroutine(LeavingCourtRoom(trump, AnimationType.TrumpTurnLeft, AnimationType.TrumpWalking, turnedManTransform[0], roomLeavingLocation));
+            yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.FadeAnimation(true);
+            guard.PlayAnim(AnimationType.GuardWalking);
+            guard.transform.DOMove(roomLeavingLocation.position, 1.8f);
+            yield return new WaitForSeconds(1.8f);
+            GameManager.Instance.FadeAnimation(false);
+            guard.transform.position = guardLocations[0].position;
+            guard.PlayAnim(AnimationType.GuardIdle);
+            trump.gameObject.SetActive(false);
+            //pryingMan.PlayAnim(AnimationType.Running);
+        }
+
+
+
+
+        ButtonAnimation(buttonNextPerson.transform, Vector3.one);
+    }
+
 
     private IEnumerator PrisonScene(CourtState currentState)
     {
@@ -183,40 +301,40 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         if (currentState == CourtState.OldMan)
         {
             TransformMovement(pryingMan.transform, prisonManPos);
-            pryingMan.isInPrison = true;
+            pryingMan.isHumanGuilty = true;
             yield return new WaitForSeconds(.25f);
             StartCoroutine(pryingMan.PlayDefaultAnimation(AnimationType.SadMan));
         }
         else if (currentState == CourtState.Hitler)
         {
             TransformMovement(hitler.transform, prisonManPos);
-            hitler.isInPrison = true;
+            hitler.isHumanGuilty = true;
             yield return new WaitForSeconds(.25f);
             StartCoroutine(hitler.PlayDefaultAnimation(AnimationType.SadManHitler));
         }
         else if (currentState == CourtState.ElonMusk)
         {
             TransformMovement(elonMusk.transform, prisonManPos);
-            elonMusk.isInPrison = true;
+            elonMusk.isHumanGuilty = true;
             yield return new WaitForSeconds(.25f);
             StartCoroutine(elonMusk.PlayDefaultAnimation(AnimationType.SadMan));
         }
         else if (currentState == CourtState.Trump)
         {
             TransformMovement(trump.transform, prisonManPos);
-            trump.isInPrison = true;
+            trump.isHumanGuilty = true;
             yield return new WaitForSeconds(.25f);
             StartCoroutine(trump.PlayDefaultAnimation(AnimationType.TrumpSad));
         }
         else if (currentState == CourtState.Spiderman)
         {
             TransformMovement(spiderman.transform, prisonManPos);
-            spiderman.isInPrison = true;
+            spiderman.isHumanGuilty = true;
             yield return new WaitForSeconds(.25f);
             StartCoroutine(spiderman.PlayDefaultAnimation(AnimationType.SpidermanSad));
         }
         GameManager.Instance.FadeAnimation(false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         ButtonAnimation(buttonNextPerson.transform, Vector3.one);
 
     }
@@ -238,20 +356,23 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
 
     IEnumerator NextPerson()
     {
-        yield return new WaitForSeconds(1);
 
         ButtonAnimation(buttonNextPerson.transform, Vector3.zero);
+        yield return new WaitForSeconds(.4f);
 
         StartCoroutine(GameManager.Instance.LocateCamera(cameraPos[0], .5f));
-        StartCoroutine(ActiveStatue(pryingMan, pryingMan.isInPrison));
-        StartCoroutine(ActiveStatue(hitler, hitler.isInPrison));
-        StartCoroutine(ActiveStatue(elonMusk, elonMusk.isInPrison));
-        StartCoroutine(ActiveStatue(spiderman, spiderman.isInPrison));
-        StartCoroutine(ActiveStatue(trump, trump.isInPrison));
+        //StartCoroutine(ActiveStatue(pryingMan, pryingMan.isHumanGuilty));
+        //StartCoroutine(ActiveStatue(hitler, hitler.isHumanGuilty));
+        //StartCoroutine(ActiveStatue(elonMusk, elonMusk.isHumanGuilty));
+        //StartCoroutine(ActiveStatue(spiderman, spiderman.isHumanGuilty));
+        //StartCoroutine(ActiveStatue(trump, trump.isHumanGuilty));
         if (courtState == CourtState.OldMan)
         {
-            StartCoroutine(LeavingCourtRoom(pryingMan, AnimationType.ManTurnLeft, AnimationType.ManWalking, turnedManTransform[0], roomLeavingLocation));
-            yield return new WaitForSeconds(1);
+            if (pryingMan.gameObject.activeInHierarchy)
+            {
+                StartCoroutine(LeavingCourtRoom(pryingMan, AnimationType.ManTurnLeft, AnimationType.ManWalking, turnedManTransform[0], roomLeavingLocation));
+                yield return new WaitForSeconds(1);
+            }
             StartCoroutine(HitlerState());
         }
         else if (courtState == CourtState.Hitler)
@@ -316,6 +437,8 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
+            guard.transform.position = guardLocations[0].position;
             //StartCoroutine(LeavingCourtRoom(pryingMan, AnimationType.ManTurnLeft, AnimationType.ManWalking, turnedManTransform[0], roomLeavingLocation));
 
             //StartCoroutine(judge.JudgeHit());
@@ -331,16 +454,12 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
 
     private IEnumerator LeavingCourtRoom(Human human, AnimationType turningLeftAnim, AnimationType walkingAnim, Transform turnRotation, Transform endPosition)
     {
-        print(human.isInPrison);
-        if (!human.isInPrison)
-        {
-            human.transform.position = new Vector3(-.16f, 0, -.25f);
-            human.PlayAnim(turningLeftAnim);
-            human.transform.DOLocalRotateQuaternion(turnRotation.localRotation, 1);
-            yield return new WaitForSeconds(1.5f);
-            human.PlayAnim(walkingAnim);
-            human.transform.DOMove(endPosition.position, 2);
-        }
+        human.transform.position = new Vector3(-.16f, 0, -.25f);
+        human.PlayAnim(turningLeftAnim,.3f,1.2f);
+        human.transform.DOLocalRotateQuaternion(turnRotation.localRotation, 1);
+        yield return new WaitForSeconds(1f);
+        human.PlayAnim(walkingAnim, .3f, 1.2f);
+        human.transform.DOMove(endPosition.position, 3);
     }
 
     private IEnumerator PryingManState()
@@ -385,7 +504,7 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         //ScaleTo(pryingMan.transform, Vector3.zero);
         //ScaleTo(elonMusk.transform, Vector3.zero);
         hitler.PlayAnim(AnimationType.SoldierSalute);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         hitler.PlayAnim(AnimationType.StandingArguingHitler);
         ObjectScaleTo(speechBubbleTransform, Vector3.one, "I have done this for my people!");
         ButtonAnimation(buttonPunishment.transform, Vector3.one);
@@ -404,7 +523,7 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ObjectScaleTo(speechBubbleTransform, Vector3.one, "HEY! I am a hero not a criminal!");
         ButtonAnimation(buttonPunishment.transform, Vector3.one);
         ButtonAnimation(buttonForgive.transform, Vector3.one);
-        DocumentMovement(documents[1], documentPosUp);
+        DocumentMovement(documents[3], documentPosUp);
     }
 
     private IEnumerator TrumpState()
@@ -422,7 +541,7 @@ public class CourtRoomController : LocalSingleton<CourtRoomController>
         ObjectScaleTo(speechBubbleTransform, Vector3.one, "Let's make America great again.");
         ButtonAnimation(buttonPunishment.transform, Vector3.one);
         ButtonAnimation(buttonForgive.transform, Vector3.one);
-        DocumentMovement(documents[1], documentPosUp);
+        DocumentMovement(documents[4], documentPosUp);
     }
 
     public void DocumentMovement(Transform documentTransform, Transform finalPos)

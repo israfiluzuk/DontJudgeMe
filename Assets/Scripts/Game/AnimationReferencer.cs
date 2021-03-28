@@ -58,6 +58,15 @@ public enum AnimationType
     SpidermanTurnLeft,
     TrumpTurnLeft,
     ManWalking,
+    GuardIdle,
+    GuardWalking,
+    HitlerPrayingDown,
+    HitlerPrayingDownToUp,
+    ManPrayingDownToUp,
+    SpidermanPrayingDown,
+    SpidermanPrayingDownToUp,
+    TrumpPrayingDown,
+    TrumpPrayingDownToUp,
 }
 
 public class AnimationReferencer : LocalSingleton<AnimationReferencer>

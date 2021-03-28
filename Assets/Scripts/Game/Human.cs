@@ -7,7 +7,7 @@ public class Human : Animations
 {
     private Rigidbody _rb;
     public int EvilDegree;
-    public bool isInPrison = false;
+    public bool isHumanGuilty = false;
     protected Rigidbody rb
     {
         get

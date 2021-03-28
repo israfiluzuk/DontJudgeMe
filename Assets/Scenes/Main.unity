@@ -2060,7 +2060,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &211545248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2144,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341fc2e91226cc747a53965fecbee5c6, type: 3}
+--- !u!1 &220149991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 24463702a0bd1f0448d4e043857dc43d,
+    type: 3}
+  m_PrefabInstance: {fileID: 371726194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &220149992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+    type: 3}
+  m_PrefabInstance: {fileID: 371726194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &220149993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220149991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2021a9e3a3162a449ef71a6536e8bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animations: []
+  isParent: 0
+  EvilDegree: 0
+  isHumanGuilty: 0
+--- !u!114 &220149994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220149991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: 220149995}
+  _ActionOnDisable: 0
+--- !u!95 &220149995
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220149991}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &222954531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1446678361352102, guid: 1c2ec548a08c5c64d91afb5aec0a8bea,
@@ -2177,7 +2238,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &222954535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2370,7 +2431,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &241327165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2535,6 +2596,36 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bad3bfa14ca03549852bc34961b1515, type: 3}
+--- !u!1 &277112212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277112213}
+  m_Layer: 0
+  m_Name: guardSpeakingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277112213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277112212}
+  m_LocalRotation: {x: -0, y: 0.9238797, z: -0, w: 0.3826831}
+  m_LocalPosition: {x: -7.07, y: 0.03999996, z: 6.78}
+  m_LocalScale: {x: 0.3039, y: 0.4, z: 0.32001215}
+  m_Children: []
+  m_Father: {fileID: 1727070168}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!1 &281667873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +3033,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &335309296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3014,7 +3105,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &362003712 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95661683299282544, guid: 5a1dddcd62585fa4bac28d5c8c14c69e,
@@ -3068,7 +3159,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &364212020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3083,6 +3174,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Animator: {fileID: 364212018}
   _ActionOnDisable: 0
+--- !u!1001 &371726194
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1328836970}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3039
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.32001215
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.07
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03999996
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.78
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.3826831
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9238797
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24463702a0bd1f0448d4e043857dc43d,
+        type: 3}
+      propertyPath: m_Name
+      value: PoliceIdle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24463702a0bd1f0448d4e043857dc43d, type: 3}
 --- !u!1001 &376734555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3574,7 +3749,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &424475893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3903,7 +4078,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &466650329 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95820707185439718, guid: b7d5cec84b2b11f4998270271ce20139,
@@ -4179,7 +4354,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &510814809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4457,7 +4632,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1727070168}
+    m_TransformParent: {fileID: 1328836970}
     m_Modifications:
     - target: {fileID: 1039537441097720, guid: dbfa7c2d0f19eb841b43227e61394aa4, type: 3}
       propertyPath: m_IsActive
@@ -4501,7 +4676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4767467582689048, guid: dbfa7c2d0f19eb841b43227e61394aa4, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4767467582689048, guid: dbfa7c2d0f19eb841b43227e61394aa4, type: 3}
       propertyPath: m_LocalScale.x
@@ -5135,6 +5310,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655803000}
   m_CullTransparentMesh: 0
+--- !u!1 &661422719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661422720}
+  m_Layer: 0
+  m_Name: guardSpeakingPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661422720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661422719}
+  m_LocalRotation: {x: -0, y: 0.9238797, z: -0, w: 0.3826831}
+  m_LocalPosition: {x: -1.06, y: 0.03999996, z: 0.42}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_Children: []
+  m_Father: {fileID: 1727070168}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!1 &669186423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8792727751794400985, guid: 378786b3398854849a6354565a90a377,
@@ -5802,7 +6007,7 @@ Transform:
   m_LocalScale: {x: 0.037648737, y: 0.1, z: 0.055005003}
   m_Children: []
   m_Father: {fileID: 1727070168}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!1 &766834996
 GameObject:
@@ -6413,6 +6618,32 @@ MonoBehaviour:
       type: 3}
   - animationType: 52
     animation: {fileID: 7400000, guid: 6568236f93232af43b7c816137266e66, type: 3}
+  - animationType: 53
+    animation: {fileID: -203655887218126122, guid: 24463702a0bd1f0448d4e043857dc43d,
+      type: 3}
+  - animationType: 54
+    animation: {fileID: -203655887218126122, guid: 616202dc3c442714c8582280f573194c,
+      type: 3}
+  - animationType: 55
+    animation: {fileID: -203655887218126122, guid: 7a5a013caefc4a24d8d4f5de76021b4c,
+      type: 3}
+  - animationType: 56
+    animation: {fileID: -203655887218126122, guid: b409f08024f9a2c4abf3e654c4d5da37,
+      type: 3}
+  - animationType: 57
+    animation: {fileID: -203655887218126122, guid: 139c177b7ef0fc94eba6b137cb2365e2,
+      type: 3}
+  - animationType: 51
+    animation: {fileID: -203655887218126122, guid: 3130b0bda85a60e419eed9453b3c8ab8,
+      type: 3}
+  - animationType: 51
+    animation: {fileID: 0}
+  - animationType: 51
+    animation: {fileID: 0}
+  - animationType: 51
+    animation: {fileID: 0}
+  - animationType: 51
+    animation: {fileID: 0}
   - animationType: 51
     animation: {fileID: 0}
   - animationType: 51
@@ -6555,7 +6786,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &851073808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6727,7 +6958,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &857641461 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95045234137053244, guid: 4eddbacd439952c4ca34cf849f793fc9,
@@ -6904,7 +7135,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &877543453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7612,7 +7843,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &923462669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7717,7 +7948,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &938470365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7765,7 +7996,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &946180658 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95039825154178672, guid: 02bcdc0c1f553c34d9e3267012be4d2e,
@@ -8057,7 +8288,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &958165920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8332,7 +8563,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &970521438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8658,7 +8889,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1017630730 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95045234137053244, guid: 4eddbacd439952c4ca34cf849f793fc9,
@@ -8831,6 +9062,8 @@ MonoBehaviour:
   - {fileID: 381348538}
   - {fileID: 1519854983}
   - {fileID: 1575575620}
+  - {fileID: 1500542346}
+  - {fileID: 1986553529}
   documentPosUp: {fileID: 762826529}
   documentPosDown: {fileID: 2059194031}
   prisonManPos: {fileID: 775975100}
@@ -8848,6 +9081,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  guard: {fileID: 220149993}
+  guardLocations:
+  - {fileID: 277112213}
+  - {fileID: 661422720}
 --- !u!1001 &1046431408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9231,8 +9468,8 @@ RectTransform:
   m_Father: {fileID: 1191128806}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.05, y: 0}
+  m_AnchorMax: {x: 0.95, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9261,14 +9498,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 48
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FORGIVE
+  m_Text: NOT GUILTY
 --- !u!222 &1110063310
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9304,7 +9541,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1111039922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9897,7 +10134,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1142830195 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95326635332618738, guid: dbfa7c2d0f19eb841b43227e61394aa4,
@@ -10015,7 +10252,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1166429137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10150,7 +10387,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1171089926 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95661683299282544, guid: 5a1dddcd62585fa4bac28d5c8c14c69e,
@@ -10613,7 +10850,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1231401473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10661,7 +10898,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1232099572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10752,7 +10989,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1243287501 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95489439182720448, guid: 5856703dc7c6e2b4a9933fbac15a7dd0,
@@ -10836,7 +11073,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1245827307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11394,6 +11631,8 @@ Transform:
   - {fileID: 26078214}
   - {fileID: 1999494460}
   - {fileID: 1573199861}
+  - {fileID: 1111039920}
+  - {fileID: 220149992}
   m_Father: {fileID: 1727070168}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11451,7 +11690,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1329013843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12269,6 +12508,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -6.013
       objectReference: {fileID: 0}
+    - target: {fileID: 1458244409264722498, guid: 7b4480ec80639fe42ae4888d716957c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622846759706361975, guid: 7b4480ec80639fe42ae4888d716957c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1924946526609821383, guid: 7b4480ec80639fe42ae4888d716957c7,
         type: 3}
       propertyPath: m_IsActive
@@ -12306,10 +12555,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2444118193381792371, guid: 7b4480ec80639fe42ae4888d716957c7,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2185833
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444118193381792371, guid: 7b4480ec80639fe42ae4888d716957c7,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.082
+      value: -1.332
       objectReference: {fileID: 0}
     - target: {fileID: 2520612578339213286, guid: 7b4480ec80639fe42ae4888d716957c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811752797717265223, guid: 7b4480ec80639fe42ae4888d716957c7,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12320,6 +12579,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4308924174159833506, guid: 7b4480ec80639fe42ae4888d716957c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4408454630658959102, guid: 7b4480ec80639fe42ae4888d716957c7,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12459,6 +12723,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8864601075661745052, guid: 7b4480ec80639fe42ae4888d716957c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9175436753753859284, guid: 7b4480ec80639fe42ae4888d716957c7,
         type: 3}
       propertyPath: m_Name
@@ -12509,7 +12778,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1465208087 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95661683299282544, guid: 5a1dddcd62585fa4bac28d5c8c14c69e,
@@ -12658,6 +12927,100 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476477927}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1500542345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1500542346}
+  - component: {fileID: 1500542349}
+  - component: {fileID: 1500542348}
+  - component: {fileID: 1500542347}
+  m_Layer: 0
+  m_Name: Paper_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1500542346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500542345}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000017881392}
+  m_LocalPosition: {x: -0.059, y: 2.025, z: -4.249}
+  m_LocalScale: {x: 0.037648737, y: 0.1, z: 0.055005003}
+  m_Children: []
+  m_Father: {fileID: 1727070168}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+--- !u!64 &1500542347
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500542345}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1500542348
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500542345}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: edc82895ac3ba80458d7baed218c7439, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1500542349
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500542345}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1501197950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12869,7 +13232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4767467582689048, guid: dbfa7c2d0f19eb841b43227e61394aa4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4767467582689048, guid: dbfa7c2d0f19eb841b43227e61394aa4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13334,7 +13697,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1546494750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13518,7 +13881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1575575620
 Transform:
   m_ObjectHideFlags: 0
@@ -13531,7 +13894,7 @@ Transform:
   m_LocalScale: {x: 0.037648737, y: 0.1, z: 0.055005003}
   m_Children: []
   m_Father: {fileID: 1727070168}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!64 &1575575621
 MeshCollider:
@@ -14026,7 +14389,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1599647961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14068,7 +14431,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1622225495 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95307863517311400, guid: 6e1d181b38dc23442bf7e33c0a8d030d,
@@ -14236,7 +14599,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1673620902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14371,8 +14734,8 @@ RectTransform:
   m_Father: {fileID: 1525990425}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.05, y: 0}
+  m_AnchorMax: {x: 0.95, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14401,14 +14764,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 48
+    m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PUNISH
+  m_Text: GUILTY
 --- !u!222 &1690485332
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14484,11 +14847,14 @@ Transform:
   - {fileID: 1134401806}
   - {fileID: 381348538}
   - {fileID: 1519854983}
-  - {fileID: 1111039920}
   - {fileID: 1575575620}
+  - {fileID: 1500542346}
+  - {fileID: 1986553529}
   - {fileID: 762826529}
   - {fileID: 2059194031}
   - {fileID: 713908178}
+  - {fileID: 277112213}
+  - {fileID: 661422720}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14711,7 +15077,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1746861040 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95602823118236686, guid: 965b65ac3aadf714ba4053907daf25c5,
@@ -15366,7 +15732,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1836147536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15723,7 +16089,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1888854474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15926,7 +16292,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &1905580707 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95820707185439718, guid: b7d5cec84b2b11f4998270271ce20139,
@@ -16032,7 +16398,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &1924433088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16408,7 +16774,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
   sceneHitler: {fileID: 1072636869}
 --- !u!95 &1949454602
 Animator:
@@ -16645,7 +17011,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
   sceneHitler: {fileID: 0}
 --- !u!114 &1969415121
 MonoBehaviour:
@@ -16743,6 +17109,100 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2141060070}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986553528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986553529}
+  - component: {fileID: 1986553532}
+  - component: {fileID: 1986553531}
+  - component: {fileID: 1986553530}
+  m_Layer: 0
+  m_Name: Paper_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1986553529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986553528}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000017881392}
+  m_LocalPosition: {x: -0.059, y: 2.025, z: -4.249}
+  m_LocalScale: {x: 0.037648737, y: 0.1, z: 0.055005003}
+  m_Children: []
+  m_Father: {fileID: 1727070168}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+--- !u!64 &1986553530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986553528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1986553531
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986553528}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 78c4c8fb2860935489ecc7a6630ceac7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1986553532
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986553528}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1987173505
 GameObject:
   m_ObjectHideFlags: 0
@@ -17358,7 +17818,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!114 &2042553499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17400,7 +17860,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &2047616760 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95602823118236686, guid: 965b65ac3aadf714ba4053907daf25c5,
@@ -17530,7 +17990,7 @@ MonoBehaviour:
   animations: []
   isParent: 0
   EvilDegree: 0
-  isInPrison: 0
+  isHumanGuilty: 0
 --- !u!95 &2056487820 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95045234137053244, guid: 4eddbacd439952c4ca34cf849f793fc9,
@@ -17579,7 +18039,7 @@ Transform:
   m_LocalScale: {x: 0.037648737, y: 0.1, z: 0.055005003}
   m_Children: []
   m_Father: {fileID: 1727070168}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &2076500000
 PrefabInstance:
